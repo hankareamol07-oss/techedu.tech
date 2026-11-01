@@ -89,7 +89,7 @@
 
   // pricing → preselect service
   $$('[data-plan]').forEach(a => a.addEventListener('click', () => {
-    const sel = $('#service'); const v = a.dataset.plan + ' package';
+    const sel = $('#service'); const v = a.dataset.plan;
     [...sel.options].forEach(o => { if (o.text === v) sel.value = v; });
   }));
 
@@ -127,10 +127,10 @@
       for (let i = 0; i < pts.length; i++) {
         const p = pts[i]; p.x += p.vx; p.y += p.vy;
         if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
-        ctx.fillStyle = 'rgba(150,160,255,.55)'; ctx.beginPath(); ctx.arc(p.x, p.y, 1.4, 0, 7); ctx.fill();
+        ctx.fillStyle = 'rgba(108,92,255,.35)'; ctx.beginPath(); ctx.arc(p.x, p.y, 1.4, 0, 7); ctx.fill();
         for (let j = i + 1; j < pts.length; j++) {
           const q = pts[j], d = Math.hypot(p.x - q.x, p.y - q.y);
-          if (d < 130) { ctx.strokeStyle = `rgba(108,92,255,${.18 * (1 - d / 130)})`; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+          if (d < 130) { ctx.strokeStyle = `rgba(108,92,255,${.14 * (1 - d / 130)})`; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
         }
       }
       requestAnimationFrame(draw);
@@ -143,16 +143,16 @@
   form?.addEventListener('submit', async ev => {
     ev.preventDefault();
     const btn = form.querySelector('button[type=submit]'), old = btn.innerHTML;
-    btn.disabled = true; btn.textContent = 'Sending…';
+    btn.disabled = true; btn.textContent = form.dataset.sending || 'Sending…';
     msg.className = 'form-msg';
     try {
       const res = await fetch(form.dataset.ajax, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
       const j = await res.json().catch(() => ({}));
       if (!res.ok || j.success === false || j.success === 'false') throw new Error(j.message || 'Failed');
-      msg.className = 'form-msg ok'; msg.textContent = 'Thanks! Your message has been sent. I will reply within 24 hours.';
+      msg.className = 'form-msg ok'; msg.textContent = form.dataset.ok;
       form.reset();
     } catch (e) {
-      msg.className = 'form-msg err'; msg.textContent = (e.message && e.message !== 'Failed' ? e.message + ' ' : '') + 'Could not send right now. Please email me directly.';
+      msg.className = 'form-msg err'; msg.textContent = form.dataset.err;
     } finally { btn.disabled = false; btn.innerHTML = old; }
   });
 })();

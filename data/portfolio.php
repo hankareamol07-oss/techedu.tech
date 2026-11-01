@@ -11,7 +11,7 @@ return [
     'services' => [
         ['icon' => 'globe',   'title' => 'Website Development',     'text' => 'Fast, mobile-first business, school and personal websites that rank on Google and turn visitors into enquiries.'],
         ['icon' => 'news',    'title' => 'News & Content Portals',  'text' => 'Marathi/English news portals with categories, video news, e-magazine and an easy admin panel for daily posting.'],
-        ['icon' => 'school',  'title' => 'Education Platforms',     'text' => 'Coaching institute sites, online courses, test series, results and student login. Built by a teacher who knows classrooms.'],
+        ['icon' => 'school',  'title' => 'Education Platforms',     'text' => 'Coaching institute sites, online courses, test series, results and student login. Designed around how students really learn.'],
         ['icon' => 'android', 'title' => 'Android App Development', 'text' => 'Published Android apps with 200K+ downloads. Learning apps, quiz apps and business apps, ready for the Play Store.'],
         ['icon' => 'game',    'title' => 'Educational Games',       'text' => 'Interactive HTML5 games for kids: maths, alphabets, board games and science, playable on any phone or smart board.'],
         ['icon' => 'rocket',  'title' => 'Domain, Hosting & SEO',   'text' => 'Domain setup, hosting, SSL, Google Search Console and speed optimisation. Your site live and found, without the headache.'],

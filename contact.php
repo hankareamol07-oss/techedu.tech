@@ -7,7 +7,7 @@ $ajax = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
 
 function done(bool $ok, string $msg, bool $ajax): never {
     if ($ajax) { header('Content-Type: application/json'); http_response_code($ok ? 200 : 422); echo json_encode(['success' => $ok, 'message' => $msg]); }
-    else { header('Location: index.php?sent=' . ($ok ? '1' : '0') . '#contact'); }
+    else { header('Location: ' . (($_POST['lang'] ?? '') === 'mr' ? 'mr/' : '') . 'index.php?sent=' . ($ok ? '1' : '0') . '#contact'); }
     exit;
 }
 
@@ -33,6 +33,6 @@ if ($fh) { fputcsv($fh, [date('Y-m-d H:i:s'), $name, $email, $phone, $service, $
 
 $body = "New enquiry from techedu.tech\n\nName: $name\nEmail: $email\nPhone: $phone\nService: $service\n\n$message\n";
 $headers = 'From: TechEdu Website <no-reply@' . ($_SERVER['HTTP_HOST'] ?? 'techedu.tech') . ">\r\nReply-To: $email\r\nContent-Type: text/plain; charset=UTF-8";
-@mail($cfg['email'], 'New enquiry: ' . $name, $body, $headers);
+@mail($cfg['form_email'], 'New enquiry: ' . $name, $body, $headers);
 
 done(true, 'Thanks! Your message has been sent.', $ajax);

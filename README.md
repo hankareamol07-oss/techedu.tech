@@ -1,4 +1,4 @@
-# techedu.tech – Amol Hankare Freelance Portfolio
+# techedu.tech – TechEdu Freelance Portfolio
 
 Motion-rich portfolio (websites, Android apps, HTML5 games) written in plain PHP, plus an auto-generated static copy in `dist/` for Cloudflare Pages.
 
