@@ -20,5 +20,10 @@ Copy the folder to `C:\xampp\htdocs\techedu` and open http://localhost/techedu, 
 
 Contact form on the static site uses FormSubmit: the very first message sends an activation email to `form_email` – click **Activate** once, then all enquiries arrive in your inbox.
 
+## Deploy option A2 – Cloudflare Workers (new dashboard, no Pages option)
+1. Workers & Pages → **Create application** → **Import a repository** → GitHub → `techedu.tech`.
+2. Project name `techedu-tech`, Build command: *(empty)*, Deploy command: `npx wrangler deploy` → **Deploy**. `wrangler.jsonc` serves the `dist/` folder.
+3. Worker → **Settings → Domains & Routes → Add → Custom domain** → `techedu.tech` (and `www.techedu.tech`).
+
 ## Deploy option B – PHP hosting (InfinityFree, Hostinger, cPanel)
 Upload everything **except `dist/`** to `htdocs`/`public_html`. The contact form (`contact.php`) saves messages to `storage/messages.csv` and emails you. Read them at `/admin.php` – **change `ADMIN_PASSWORD` in admin.php first.**
